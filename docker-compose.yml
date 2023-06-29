@@ -1,35 +1,3 @@
 version: "3.3"
 
 services:
-  ################################################################
-  #                      API CONFIGURATION                       #
-  ################################################################
-  # api_temperature:
-  #   stdin_open: true
-  #   container_name: api_temperature
-  #   build: Services/api_temperature/api/.
-  #   # build: ./Services/api_temperature/api.
-  #   # environment:
-  #   #   DATABASE_URL: "mysql://root:hola1234@database:3306/words?schema=public"
-  #   # depends_on:
-  #   #   - database
-  #   # volumes:
-  #   #   - ./api:/app
-  #   ports:
-  #     - 3307:5000
-
-  heat_insertion:
-    stdin_open: true
-    container_name: heat_insertion
-    build: Services/api_temperature/insertData/.
-    # build: ./Services/api_temperature/api.
-    # environment:
-    #   DATABASE_URL: "mysql://root:hola1234@database:3306/words?schema=public"
-    # depends_on:
-    #   - database
-    # volumes:
-    #   - ./api:/app
-    ports:
-      - 3308:5000
-    # command: npx prisma db push
-    # command: npm run dev
