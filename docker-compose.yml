@@ -1,3 +1,14 @@
 version: "3.3"
+version: "3.3"
 
 services:
+  ################################################################
+  #                    CLIENT CONFIGURATION                      #
+  ################################################################
+  client:
+    container_name: client
+    build: client/app-name/.
+    expose:
+      - 3300
+    ports:
+      - 3300:3000
