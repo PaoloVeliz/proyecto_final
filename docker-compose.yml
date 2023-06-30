@@ -4,39 +4,41 @@ services:
   ################################################################
   #                      API CONFIGURATION                       #
   ################################################################
-  # api_temperature:
-  #   stdin_open: true
-  #   container_name: api_temperature
-  #   build: Services/api_temperature/api/.
-  #   # build: ./Services/api_temperature/api.
-  #   # environment:
-  #   #   DATABASE_URL: "mysql://root:hola1234@database:3306/words?schema=public"
-  #   # depends_on:
-  #   #   - database
-  #   # volumes:
-  #   #   - ./api:/app
-  #   ports:
-  #     - 3307:5000
-
+  ################################################################
+  #                      DISEASE SERVICES CONFIGURATION          #
+  ################################################################
+  # java app
   disease_api:
       stdin_open: true
       container_name: disease_api
       build: Services/api_diseases/CrudApi/CrudApi/.
       ports:
-        - 3308:8073
-  
-  # heat_insertion:
-  #   stdin_open: true
-  #   container_name: heat_insertion
-  #   build: Services/api_temperature/insertData/.
-  #   # build: ./Services/api_temperature/api.
-  #   # environment:
-  #   #   DATABASE_URL: "mysql://root:hola1234@database:3306/words?schema=public"
-  #   # depends_on:
-  #   #   - database
-  #   # volumes:
-  #   #   - ./api:/app
-  #   ports:
-  #     - 3308:5000
-  #   # command: npx prisma db push
-    # command: npm run dev
+        - 3307:8073
+
+  # node app
+  disease_insertion:
+      stdin_open: true
+      container_name: disease_insertion
+      build: Services/api_diseases/data_insertion/.
+      ports:
+        - 3308:8080
+
+
+  ################################################################
+  #                      HEAT SERVICES CONFIGURATION             #
+  ################################################################
+  # both in python
+  heat_insertion:
+    stdin_open: true
+    container_name: heat_insertion
+    build: Services/api_temperature/insertData/.
+    ports:
+      - 3310:5000
+
+
+  api_temperature:
+    stdin_open: true
+    container_name: api_temperature
+    build: Services/api_temperature/api/.
+    ports:
+      - 3311:5000
