@@ -5,21 +5,28 @@ import './App.css';
 
 function App() {
   const [data, setData] = useState([])
+  const [data1, setData1] = useState([])
   useEffect(() => {
     const interval = setInterval(() => {
-      fetch('https://global-warming.org/api/temperature-api')
+      fetch('http://35.174.170.145:3307/Data')
             .then((resp) => resp.json())
             .then((apiData) => {
-              setData(apiData['result']);
-              // console.log(apiData['result']);
+              setData(apiData);
+              // console.log(apiData);
             });
-    }, 1000);
+      fetch('http://35.174.170.145:3311/data')
+            .then((resp) => resp.json())
+            .then((apiData) => {
+              setData1(apiData);
+              // console.log(apiData);
+      });
+    }, 5000);
     return () => clearInterval(interval);
   }, []);
 
   const style = {
     border: '1px solid black',
-    
+
   };
 
   const tablestyle={
@@ -29,12 +36,12 @@ function App() {
 
   const tablesection = {
     display: 'flex',
-   
+
   };
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
+        {/* <img src={logo} className="App-logo" alt="logo" /> */}
         <p>
           Data insertada en las bases de datos
         </p>
@@ -44,18 +51,16 @@ function App() {
           <table>
           <tr style={style}>
             <th>Año</th>
-            <th>Estacion</th>
-            <th>Suelo</th>
+            <th>numero de pacientes</th>
           </tr>
           {data.map((item) => {
                 return (
                   <tr key={item.id} style={tablestyle}>
-                    <td>{item.time}</td>
-                    <td>{item.station}</td>
-                    <td>{item.land}</td>
+                    <td>{item.fecha}</td>
+                    <td>{item.num_pacientes}</td>
                   </tr>
                 );
-          })}  
+          })}
           </table>
           </div>
           <div style={ { paddingLeft: '300px'}}>
@@ -66,25 +71,25 @@ function App() {
             <th>Estacion</th>
             <th>Suelo</th>
           </tr>
-          {data.map((item) => {
+          {data1.map((item) => {
                 return (
-                  <tr key={item.id} style={tablestyle}>
-                    <td>{item.time}</td>
-                    <td>{item.station}</td>
-                    <td>{item.land}</td>
+                  <tr key={item[0]} style={tablestyle}>
+                    <td>{item[1]}</td>
+                    <td>{item[2]}</td>
+                    <td>{item[3]}</td>
                   </tr>
                 );
-          })}  
+          })}
           </table>
 
           </div>
 
         </div>
 
-        
+
       </header>
 
-      
+
     </div>
   );
 }
