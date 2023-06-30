@@ -6,9 +6,9 @@ server:
 spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    username: dbmasteruser
-    url: jdbc:mysql://ls-795248e653acfe6c184f32f16ac753c14fc382c6.cmaypllbbxdd.us-east-1.rds.amazonaws.com:3306/prueba2
-    password: h46282747
+    username: root
+    url: jdbc:mysql://44.205.253.175:3307/diseases
+    password: adios12345
   jpa:
     hibernate:
       ddl-auto: update
